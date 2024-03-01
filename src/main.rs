@@ -6,15 +6,15 @@ fn compare(schema_path: &str, json_data_path: &str) -> Result<(), std::io::Error
     let schema_str = fs::read_to_string(schema_path)?;
     let schema_json: JsonValue = serde_json::from_str(&schema_str)?;
 
-    let schema = JSONSchema::compile(&schema_json).expect("Valides Schema");
+    let schema = JSONSchema::compile(&schema_json).expect("Valid Schema");
 
     let json_str = fs::read_to_string(json_data_path)?;
     let json_data: JsonValue = serde_json::from_str(&json_str)?;
 
     match schema.validate(&json_data) {
-        Ok(_) => println!("Die JSON-Datei entspricht dem Schema."),
+        Ok(_) => println!("JSON ==  Schema."),
         Err(errors) => {
-            println!("Die JSON-Datei entspricht nicht dem Schema:");
+            println!("JSON != Schema:");
             for error in errors {
                 println!("- {}", error)
             }
@@ -25,10 +25,7 @@ fn compare(schema_path: &str, json_data_path: &str) -> Result<(), std::io::Error
 }
 
 fn main() {
-    if let Err(e) = compare(
-        "/Users/lptrk/environment/repos/schemar/assets/json/schema.json",
-        "/Users/lptrk/environment/repos/schemar/assets/json/index.json",
-    ) {
-        eprintln!("Fehler beim Vergleichen: {}", e);
+    if let Err(e) = compare("./assets/json/schema.json", "./assets/json/index.json") {
+        eprintln!("Error in comparison: {}", e);
     }
 }
