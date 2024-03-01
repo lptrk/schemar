@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "name": "Max Mustermann",
+  "email": "max.mustermann@example.com",
+  "isActive": true,
+  "roles": ["admin", "user"],
+  "profile": {
+    "age": 25,
+    "address": {
+      "street": "Hauptstraße 5",
+      "citty": "Musterstadt",
+      "postalCode": "12345"
+    }
+  }
+}
